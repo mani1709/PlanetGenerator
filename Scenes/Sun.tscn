@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://curruomcd6xwg"]
+
+[ext_resource type="Script" path="res://Scripts/Universe/Sun.gd" id="1_jjavq"]
+[ext_resource type="Shader" path="res://Shaders/Sun.gdshader" id="1_vsyym"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5svf"]
+render_priority = 0
+shader = ExtResource("1_vsyym")
+
+[sub_resource type="SphereMesh" id="SphereMesh_j2ynu"]
+material = SubResource("ShaderMaterial_u5svf")
+radius = 1000.0
+height = 2000.0
+
+[node name="Sun" type="Node3D"]
+script = ExtResource("1_jjavq")
+
+[node name="SunMesh" type="MeshInstance3D" parent="."]
+layers = 512
+cast_shadow = 0
+mesh = SubResource("SphereMesh_j2ynu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+layers = 1048575
+shadow_enabled = true
+shadow_opacity = 0.75
+shadow_blur = 0.25
+directional_shadow_split_1 = 0.3
+sky_mode = 1

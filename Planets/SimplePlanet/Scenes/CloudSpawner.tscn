@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfhxcarmg045v"]
+
+[ext_resource type="Texture2D" uid="uid://de503nj4jprip" path="res://Assets/Cloud.png" id="1_bht51"]
+[ext_resource type="Script" path="res://Planets/SimplePlanet/Scripts/CloudSpawner.gd" id="1_w1kj5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d5hxe"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fqg07"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_bht51")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3co01"]
+material = SubResource("StandardMaterial3D_fqg07")
+size = Vector2(1, 1)
+orientation = 2
+
+[node name="CloudRoot" type="Node3D"]
+script = ExtResource("1_w1kj5")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 50
+lifetime = 30.0
+explosiveness = 0.98
+process_material = SubResource("ParticleProcessMaterial_d5hxe")
+draw_pass_1 = SubResource("PlaneMesh_3co01")

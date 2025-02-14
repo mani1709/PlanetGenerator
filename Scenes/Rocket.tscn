@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dere4un00l62s"]
+
+[ext_resource type="Script" path="res://Scripts/Rocket/Rocket.gd" id="1_23alx"]
+[ext_resource type="ArrayMesh" uid="uid://p33o76ntjqm" path="res://Models/Rocket/rocket_3d.obj" id="2_nsgt6"]
+[ext_resource type="Script" path="res://Scripts/Rocket/CameraRoot.gd" id="3_8vagx"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ai3va"]
+
+[node name="Rocket" type="CharacterBody3D"]
+script = ExtResource("1_23alx")
+
+[node name="RocketModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 6.12323e-17, 1, 0, -1, 6.12323e-17, 0, 0, 0)
+mesh = ExtResource("2_nsgt6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.055, 0, 0, 0, 1.87065e-16, 3.055, 0, -3.055, 1.87065e-16, 0, 0, -0.162)
+shape = SubResource("CapsuleShape3D_ai3va")
+
+[node name="CameraRoot" type="Node3D" parent="."]
+script = ExtResource("3_8vagx")
+
+[node name="TwistPivot" type="Node3D" parent="CameraRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PitchPivot" type="Node3D" parent="CameraRoot/TwistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0)
+
+[node name="Camera" type="Camera3D" parent="CameraRoot/TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+far = 700000.0

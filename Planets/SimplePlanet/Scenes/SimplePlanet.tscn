@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://v62353m30gcc"]
+
+[ext_resource type="Script" path="res://Planets/SimplePlanet/Scripts/SimplePlanet.gd" id="1_631n5"]
+[ext_resource type="Script" path="res://Planets/SimplePlanet/Scripts/SimplePlanetNode.gd" id="1_wwsg1"]
+[ext_resource type="Shader" path="res://Planets/SimplePlanet/Shaders/SimplePlanetHaloInside.gdshader" id="5_iiuwd"]
+[ext_resource type="Shader" path="res://Planets/SimplePlanet/Shaders/SimplePlanetHaloOutside.gdshader" id="6_3dwkd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ednn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_gf01n"]
+sky_material = SubResource("ProceduralSkyMaterial_7ednn")
+
+[sub_resource type="Environment" id="Environment_vc0dc"]
+background_mode = 2
+sky = SubResource("Sky_gf01n")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_esbbl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mvsxh"]
+render_priority = 0
+shader = ExtResource("5_iiuwd")
+shader_parameter/playerPosition = Vector3(-30000, 0, 0)
+shader_parameter/radiusHalo = null
+shader_parameter/sun_center = Vector3(0, 0, 0)
+shader_parameter/color_day = Color(0.2, 0.6, 0.922, 1)
+shader_parameter/color_sunset = Color(1, 0.5, 0, 1)
+shader_parameter/min_alpha = 0.0
+shader_parameter/max_alpha = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pus44"]
+material = SubResource("ShaderMaterial_mvsxh")
+radius = 150000.0
+height = 300000.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xll0l"]
+render_priority = 0
+shader = ExtResource("6_3dwkd")
+shader_parameter/color_day = Color(0.2, 0.6, 0.922, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6j4et"]
+material = SubResource("ShaderMaterial_xll0l")
+flip_faces = true
+radius = 15000.0
+height = 30000.0
+
+[node name="BetterPlanet" type="Node3D"]
+script = ExtResource("1_wwsg1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vc0dc")
+
+[node name="Planet" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_esbbl")
+script = ExtResource("1_631n5")
+
+[node name="Halo" type="MeshInstance3D" parent="Planet"]
+ignore_occlusion_culling = true
+mesh = SubResource("SphereMesh_pus44")
+
+[node name="HaloOutside" type="MeshInstance3D" parent="Planet"]
+mesh = SubResource("SphereMesh_6j4et")

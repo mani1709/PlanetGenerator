@@ -1,0 +1,35 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2w3q4adnvjyn"]
+
+[ext_resource type="Script" path="res://Scripts/Universe/Universe.gd" id="1_i5vql"]
+[ext_resource type="PackedScene" uid="uid://b4axt2egjtccw" path="res://Scenes/UIUniverse.tscn" id="1_nkffi"]
+[ext_resource type="PackedScene" uid="uid://dere4un00l62s" path="res://Scenes/Rocket.tscn" id="2_c4flv"]
+[ext_resource type="Texture2D" uid="uid://bc6bfmhcb7do4" path="res://Assets/skybox.png" id="2_o6t8g"]
+[ext_resource type="PackedScene" uid="uid://curruomcd6xwg" path="res://Scenes/Sun.tscn" id="5_7da4q"]
+[ext_resource type="PackedScene" uid="uid://djc0xcnoixknc" path="res://Scenes/Moon.tscn" id="6_6oxcg"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ko3ub"]
+panorama = ExtResource("2_o6t8g")
+
+[sub_resource type="Sky" id="Sky_uqlke"]
+sky_material = SubResource("PanoramaSkyMaterial_ko3ub")
+
+[sub_resource type="Environment" id="Environment_xk0u2"]
+background_mode = 2
+sky = SubResource("Sky_uqlke")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Universe" type="Node3D"]
+script = ExtResource("1_i5vql")
+
+[node name="Sun" parent="." instance=ExtResource("5_7da4q")]
+
+[node name="UiUniverse" parent="." instance=ExtResource("1_nkffi")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xk0u2")
+
+[node name="Rocket" parent="." instance=ExtResource("2_c4flv")]
+transform = Transform3D(6.12323e-17, 0, -1, 0, 1, 0, 1, 0, 6.12323e-17, -30000, 0, 0)
+
+[node name="Moon" parent="." instance=ExtResource("6_6oxcg")]

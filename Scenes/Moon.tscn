@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://djc0xcnoixknc"]
+
+[ext_resource type="Script" path="res://Scripts/Universe/Moon.gd" id="1_yg60s"]
+[ext_resource type="Shader" path="res://Shaders/Moon.gdshader" id="2_1fqod"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdl7f"]
+render_priority = 0
+shader = ExtResource("2_1fqod")
+shader_parameter/color_light_side = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/color_dark_side = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/sun_center = null
+shader_parameter/moon_center = null
+
+[sub_resource type="SphereMesh" id="SphereMesh_6hml2"]
+material = SubResource("ShaderMaterial_gdl7f")
+radius = 500.0
+height = 1000.0
+
+[node name="Moon" type="Node3D"]
+script = ExtResource("1_yg60s")
+
+[node name="MoonMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_6hml2")

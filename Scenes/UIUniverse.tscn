@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4axt2egjtccw"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UiUniverseLabel.gd" id="1_ioyxa"]
+
+[node name="UiUniverse" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ioyxa")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 161.0
+offset_bottom = 104.0
+
+[node name="OptionButtonLight" type="OptionButton" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Use Sun Light"
+popup/item_1/text = "Use Ambient Light"
+popup/item_1/id = 1
+
+[node name="OptionButtonShadow" type="OptionButton" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Use no shadows"
+popup/item_1/text = "Use shadows"
+popup/item_1/id = 1
+
+[node name="OptionButtonPlanet" type="OptionButton" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Use Simple Planet"
+popup/item_1/text = "Use Minecraft Planet"
+popup/item_1/id = 1
+
+[node name="OptionButtonMoveSun" type="OptionButton" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Don't move sun"
+popup/item_1/text = "Move sun"
+popup/item_1/id = 1
+
+[node name="RandomizePlanetButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Randomize Planet"
+alignment = 0
+
+[node name="LabelFps" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPositionPlayer" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPositionSun" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPositionPlanet" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelDistanceToCenter" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "qesdsa"
+
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/OptionButtonLight" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/OptionButtonShadow" to="." method="_on_shadow_button_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/OptionButtonPlanet" to="." method="_on_planet_option_button_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/VBoxContainer/OptionButtonMoveSun" to="." method="_on_sun_move_button_item_selected"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/RandomizePlanetButton" to="." method="_on_randomize_planet_button_pressed"]
