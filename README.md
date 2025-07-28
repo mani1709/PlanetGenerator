@@ -6,7 +6,7 @@ The .exe file can be downloaded using the following link: https://www.dropbox.co
 
 # Paper
 
-The paper linked to this thesis can be found at TBA
+The paper linked to this thesis can be found at https://doi.org/10.25365/thesis.78179
 
 # License
 
